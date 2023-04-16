@@ -136,10 +136,10 @@ pub async fn add_account (mut req : Request<PgPool>) -> tide::Result<Response> {
      .bind(param.password.as_bytes())
      .execute(pool).await
      {
-        Ok(_x) => {ws_response("OK", "Berhasil login")},
+        Ok(_x) => {ws_response("OK", "Berhasil register")},
         Err(e) => {
             println!("error insert : {:?}",e);
-            ws_response("Error", "Gagal login")
+            ws_response("Error", "Gagal register")
         }
 
      }
@@ -151,10 +151,10 @@ pub async fn update_account (mut req : Request<PgPool>) -> tide::Result<Response
     let pool = req.state();
      
      match
-     sqlx::query("UPDATE login SET password=$3::text::bytea WHERE username=$1")
+     sqlx::query("UPDATE login SET password=sha256($3) WHERE username=$1")
      .bind(param.username)
      .bind(param.email)
-     .bind(param.password)
+     .bind(param.password.as_bytes())
      .execute(pool).await
      {
         Ok(_x) => {ws_response("OK", "Berhasil Update")},
@@ -164,7 +164,6 @@ pub async fn update_account (mut req : Request<PgPool>) -> tide::Result<Response
         }
 
      }
-
 }
 
 

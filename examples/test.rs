@@ -1,6 +1,6 @@
-use std::collections::HashMap;
-use std::io;
-//use text_io::read;
+//use std::collections::HashMap;
+//use std::io;
+use text_io::read;
 fn main(){
 //     println!("ini println1");
 //     println!("ini println2");
@@ -147,70 +147,26 @@ fn main(){
     // println!("Hasil dari operasi matematika adalah: {}", result);
 
 
-    //  // Meminta input jumlah siswa
-    //  print!("Masukkan jumlah siswa: ");
-    //  let n: i32 = read!();
+     // Meminta input jumlah siswa
+     print!("Masukkan jumlah siswa: ");
+     let n: i32 = read!();
  
-    //  let mut count_lulus = 0; // Menghitung jumlah siswa yang lulus
+     let mut count_lulus = 1; // Menghitung jumlah siswa yang lulus
  
-    //  // Meminta input nilai dari masing-masing siswa dan menghitung siswa yang lulus
-    //  for i in 1..=n {
-    //      print!("Masukkan nilai siswa {} : ", i);
-    //      let nilai: f32 = read!();
+     // Meminta input nilai dari masing-masing siswa dan menghitung siswa yang lulus
+     for i in 1..=n {
+         print!("Masukkan nilai siswa {} : ", i);
+         let nilai: f32 = read!();
  
-    //      if nilai >= 6.0 {
-    //          count_lulus += 1;
-    //      }
-    //  }
+         if nilai >= 6.0 {
+             count_lulus == 1;
+         }
+     }
  
-    //  // Menampilkan jumlah siswa yang lulus
-    //  println!("Jumlah siswa yang lulus: {}", count_lulus);
+     // Menampilkan jumlah siswa yang lulus
+     println!("Jumlah siswa yang lulus: {}", count_lulus);
     
 
-    let mut users: HashMap<String, String> = HashMap::new();
-
-    // Mengisi daftar pengguna dan kata sandi
-    users.insert(String::from("gadul"), String::from("password1789"));
-    users.insert(String::from("user2"), String::from("password2"));
-    users.insert(String::from("user3"), String::from("password3"));
-
-    loop {
-        println!("Silakan masuk dengan username dan password Anda!");
-        println!("Username:");
-        let mut username = String::new();
-        io::stdin().read_line(&mut username).unwrap();
-
-        // Memeriksa apakah pengguna terdaftar
-        let password = match users.get(&username.trim().to_string()) {
-            Some(p) => p.clone(),
-            None => {
-                println!("Pengguna tidak terdaftar!");
-                continue;
-            }
-        };
-
-        println!("Password:");
-        let mut input_password = String::new();
-        io::stdin().read_line(&mut input_password).unwrap();
-
-        // Memeriksa apakah kata sandi benar
-        if input_password.trim() == password {
-            println!("Login berhasil!");
-            break;
-        } else {
-            println!("Kata sandi salah!");
-            println!("Apakah Anda lupa kata sandi Anda? (y/n)");
-            let mut answer = String::new();
-            io::stdin().read_line(&mut answer).unwrap();
-            if answer.trim() == "y" {
-                println!("Masukkan email Anda:");
-                let mut email = String::new();
-                io::stdin().read_line(&mut email).unwrap();
-                // Kirim email untuk mengatur ulang kata sandi
-                println!("Email untuk mengatur ulang kata sandi telah dikirim ke {}", email.trim());
-                break;
-            }
-        }
-    }
+   
 
 }
